@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZAFIRO - Mi IA</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #090f1c;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 22px;
+      text-align: center;
+      background: #111e35;
+      border-bottom: 2px solid #287bdb;
+    }
+
+    h1 {
+      color: #54aaff;
+      letter-spacing: 5px;
+    }
+
+    .status {
+      color: #55ddaa;
+      font-size: 13px;
+    }
+
+    #chat {
+      padding: 20px;
+      height: 65vh;
+      overflow-y: auto;
+    }
+
+    .message {
+      padding: 13px;
+      margin: 12px 0;
+      border-radius: 12px;
+      max-width: 85%;
+      line-height: 1.5;
+    }
+
+    .zafiro {
+      background: #172d4c;
+    }
+
+    .user {
+      background: #205da3;
+      margin-left: auto;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      padding: 12px;
+    }
+
+    input {
+      flex: 1;
+      min-width: 0;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid #397fc7;
+      background: #172338;
+      color: white;
+    }
+
+    button {
+      padding: 12px 17px;
+      border: none;
+      border-radius: 12px;
+      background: #287bdb;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>💎 ZAFIRO</h1>
+    <div class="status">● EN LÍNEA</div>
+    <p>Tu inteligencia artificial personal</p>
+  </header>
+
+  <main id="chat">
+    <div class="message zafiro">
+      ¡Hmph! Soy Zafiro. ¿Qué necesitas?
+      Espero que sea algo interesante. 🔥
+    </div>
+  </main>
+
+  <div class="controls">
+    <input id="mensaje" placeholder="Escribe algo...">
+    <button onclick="enviar()">Enviar</button>
+  </div>
+
+  <script>
+    function enviar() {
+      const input = document.getElementById("mensaje");
+      const chat = document.getElementById("chat");
+      const texto = input.value.trim();
+
+      if (!texto) return;
+
+      const usuario = document.createElement("div");
+      usuario.className = "message user";
+      usuario.textContent = texto;
+      chat.appendChild(usuario);
+
+      const respuesta = document.createElement("div");
+      respuesta.className = "message zafiro";
+
+      const pregunta = texto.toLowerCase();
+
+      if (pregunta.includes("hola")) {
+        respuesta.textContent =
+          "¡Hmph! Por fin apareces. ¿Qué necesitas?";
+      } else if (pregunta.includes("cómo estás")) {
+        respuesta.textContent =
+          "Estoy funcionando perfectamente. ¿Y tú?";
+      } else if (pregunta.includes("nombre")) {
+        respuesta.textContent =
+          "Me llamo Zafiro. No lo olvides.";
+      } else {
+        respuesta.textContent =
+          "Interesante... Todavía estoy aprendiendo. ¡Dime más!";
+      }
+
+      chat.appendChild(respuesta);
+      input.value = "";
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    document.getElementById("mensaje")
+      .addEventListener("keydown", function(event) {
+        if (event.key === "Enter") enviar();
+      });
+  </script>
+
+</body>
+</html>
